@@ -1,41 +1,50 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require("express");
+const app = express();
+const port = 3000;
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+const cars = [
+  { id: 1, brand: "Volvo", model: "V90", year: "2018" },
+  { id: 2, brand: "BMW", model: "Z3", year: "2005" },
+  { id: 3, brand: "Mercedes", model: "S500", year: "2014" },
+  { id: 4, brand: "Volvo", model: "C30", year: "2010" },
+];
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// GET
+app.get("/", (req, res) => {
+  res.send("Hello World, Dick is here");
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+app.get("/api/cars/", (req, res) => {
+  res.send(cars);
 });
 
-module.exports = app;
+app.get("/api/cars/:id", (req, res) => {
+  const car = cars.find((c) => c.id === parseInt(req.params.id));
+  console.log(car);
+
+  if (!car) res.status(404).send("car not found");
+  res.send(car);
+});
+
+// POST
+app.post("/api/cars/", (req, res) => {
+  const car = {
+    id: idGenerator(),
+    brand: req.body.brand,
+    model: req.body.model,
+    year: req.body.year,
+  };
+  cars.push(car);
+  res.send(car);
+});
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}!`);
+});
+
+let idGenerator = () => {
+  return Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16)
+    .substring(1);
+};

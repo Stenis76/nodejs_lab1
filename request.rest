@@ -1,0 +1,17 @@
+GET http://localhost:3000/api/cars
+###
+
+GET http://localhost:3000/api/cars/3
+
+
+###
+
+POST http://localhost:3000/api/cars
+Content-Type: application/json
+
+{
+ "brand": "Volvo", 
+ "model": "V40",
+ "year": "2014"
+  }
+
