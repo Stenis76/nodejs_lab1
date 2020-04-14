@@ -1,17 +1,28 @@
 GET http://localhost:3000/api/cars
 ###
 
-GET http://localhost:3000/api/cars/3
-
-
+GET http://localhost:3000/api/cars/2
+Content-Type: application/json
 ###
 
 POST http://localhost:3000/api/cars
 Content-Type: application/json
 
 {
- "brand": "Volvo", 
- "model": "V40",
- "year": "2014"
+ "brand": "Mercedes", 
+ "model": "S500",
+ "year": "2004"
   }
+###
 
+DELETE http://localhost:3000/api/cars/f8fa
+
+
+###
+
+PUT http://localhost:3000/api/cars/2f02
+Content-Type: application/json
+
+{
+ "model": "V70"
+ }

@@ -1,14 +1,20 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const fs = require("fs");
 
 app.use(express.json());
-const cars = [
-  { id: 1, brand: "Volvo", model: "V90", year: "2018" },
-  { id: 2, brand: "BMW", model: "Z3", year: "2005" },
-  { id: 3, brand: "Mercedes", model: "S500", year: "2014" },
-  { id: 4, brand: "Volvo", model: "C30", year: "2010" },
-];
+
+// skapar unika IDs
+let idGenerator = () => {
+  return Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16)
+    .substring(1);
+};
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}!`);
+});
 
 // GET
 app.get("/", (req, res) => {
@@ -16,12 +22,17 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/cars/", (req, res) => {
+  // Läs in från json fil
+  const carsRawData = fs.readFileSync("output.json");
+  let cars = JSON.parse(carsRawData);
   res.send(cars);
 });
 
 app.get("/api/cars/:id", (req, res) => {
-  const car = cars.find((c) => c.id === parseInt(req.params.id));
-  console.log(car);
+  // Läs in från json fil
+  const carsRawData = fs.readFileSync("output.json");
+  let cars = JSON.parse(carsRawData);
+  const car = cars.find((c) => c.id == req.params.id);
 
   if (!car) res.status(404).send("car not found");
   res.send(car);
@@ -29,22 +40,82 @@ app.get("/api/cars/:id", (req, res) => {
 
 // POST
 app.post("/api/cars/", (req, res) => {
+  // Läs in från json fil
+  const carsRawData = fs.readFileSync("output.json");
+  let cars = JSON.parse(carsRawData);
+  if (!req.body.brand.length > 2) {
+    res.status(400).send("BAD INPUT");
+    return;
+  }
+
   const car = {
     id: idGenerator(),
     brand: req.body.brand,
     model: req.body.model,
     year: req.body.year,
   };
+
   cars.push(car);
+
+  const jsonContent = JSON.stringify(cars);
+  console.log(jsonContent);
+
+  fs.writeFile("output.json", jsonContent, "utf8", function (err) {
+    if (err) {
+      console.log("An error occured");
+      return console.log(err);
+    }
+    console.log("JSON file has been saved");
+  });
   res.send(car);
 });
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}!`);
+// PUT
+
+app.put("/api/cars/:id", (req, res) => {
+  // Läs in från json fil
+  const carsRawData = fs.readFileSync("output.json");
+  let cars = JSON.parse(carsRawData);
+
+  const carIndex = cars.findIndex((c) => c.id == req.params.id);
+  if (carIndex === -1) return res.status(404).send("car not found");
+
+  const updatedCar = { ...cars[carIndex], ...req.body };
+  cars[carIndex] = updatedCar;
+
+  const jsonContent = JSON.stringify(cars);
+  console.log(jsonContent);
+
+  fs.writeFile("output.json", jsonContent, "utf8", function (err) {
+    if (err) {
+      console.log("An error occured");
+      return console.log(err);
+    }
+    console.log("JSON file has been saved");
+  });
+  res.send(cars[carIndex]);
 });
 
-let idGenerator = () => {
-  return Math.floor((1 + Math.random()) * 0x10000)
-    .toString(16)
-    .substring(1);
-};
+// DELETE
+app.delete("/api/cars/:id", (req, res) => {
+  // Läs in från json fil
+  const carsRawData = fs.readFileSync("output.json");
+  let cars = JSON.parse(carsRawData);
+  const carIndex = cars.findIndex((c) => c.id == req.params.id);
+
+  if (carIndex === -1) return res.status(404).send("car not found");
+
+  cars.splice(carIndex, 1);
+
+  const jsonContent = JSON.stringify(cars);
+  console.log(jsonContent);
+
+  fs.writeFile("output.json", jsonContent, "utf8", function (err) {
+    if (err) {
+      console.log("An error occured");
+      return console.log(err);
+    }
+    console.log("JSON file has been saved");
+  });
+  res.sendStatus(200);
+});
