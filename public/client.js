@@ -3,6 +3,8 @@ window.addEventListener("load", loadSite);
 function loadSite() {
   console.log("Client-side code running");
   getAllCarsFromServer();
+  const formAdd = document.getElementById("updateCars");
+  formAdd.addEventListener("submit", updateCar());
 }
 
 // Hämta alla bilar och skriv ut lista i html
@@ -58,13 +60,14 @@ function getCarWithIdFromServer() {
     });
 }
 
+// Lägg till bil
 function addCar() {
   let addCar = document.getElementById("createCar");
   let formData = new FormData(addCar);
-  console.log(formData);
 
+  let newCar = {};
   for (var pair of formData.entries()) {
-    console.log(pair[0] + " - " + pair[1]);
+    newCar[pair[0]] = pair[1];
   }
 
   fetch("http://localhost:3000/api/cars", {
@@ -72,7 +75,7 @@ function addCar() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(formData),
+    body: JSON.stringify(newCar),
   })
     .then((res) => {
       return res.json();
@@ -83,4 +86,67 @@ function addCar() {
     .catch((error) => {
       console.error("Error:", error);
     });
+}
+
+// Ta bort bil
+
+function deleteCarFromServer() {
+  const carId = document.getElementById("deleteCarId").value;
+
+  fetch("http://localhost:3000/api/cars/" + carId, {
+    method: "DELETE",
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((result) => {
+      console.log("Success:", result);
+    });
+}
+
+//Ändra Uppgifter
+
+function getCarWithIdFromServer2() {
+  const carId = document.getElementById("searchCarId2").value;
+
+  fetch("http://localhost:3000/api/cars/" + carId)
+    .then((res) => {
+      return res.json();
+    })
+    .then((car) => {
+      showCar(car);
+    });
+
+  function showCar(car) {
+    document.forms["updateCar"].elements["updateCarId"].value = car.id;
+    document.forms["updateCar"].elements["updateCarModel"].value = car.model;
+    document.forms["updateCar"].elements["updateCarBrand"].value = car.brand;
+    document.forms["updateCar"].elements["updateCarYear"].value = car.year;
+  }
+}
+
+function updateCar() {
+  let formData = new FormData(document.getElementById("updateCars"));
+
+  let updatedCar = {};
+  for (var pair of formData.entries()) {
+    updatedCar[pair[0]] = pair[1];
+  }
+  console.log(updatedCar);
+  // fetch("http://localhost:3000/api/cars", {
+  //   method: "PUT",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify(updatedCar),
+  // })
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((result) => {
+  //     console.log("Success:", result);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error:", error);
+  //   });
 }

@@ -4,6 +4,7 @@ const port = 3000;
 const fs = require("fs");
 const path = require("path");
 
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use(express.static("public"));
@@ -33,16 +34,21 @@ app.get("/api/cars/", (req, res) => {
 
 app.get("/api/cars/:id", (req, res) => {
   // Läs in från json fil
-  const carsRawData = fs.readFileSync("output.json");
-  let cars = JSON.parse(carsRawData);
-  const car = cars.find((c) => c.id == req.params.id);
+  fs.readFile("output.json", (err, data) => {
+    if (err) return res.status(404).send("file not found");
 
-  if (!car) res.status(404).send("car not found");
-  res.send(car);
+    let cars = JSON.parse(data);
+
+    const car = cars.find((c) => c.id == req.params.id);
+
+    if (!car) return res.status(404).send("car not found");
+    res.send(car);
+  });
 });
 
 // POST
 app.post("/api/cars/", (req, res) => {
+  console.log("post", req.body);
   // Läs in från json fil
   const carsRawData = fs.readFileSync("output.json");
   let cars = JSON.parse(carsRawData);
@@ -77,6 +83,8 @@ app.post("/api/cars/", (req, res) => {
 
 app.put("/api/cars/:id", (req, res) => {
   // Läs in från json fil
+  console.log("PUT");
+
   const carsRawData = fs.readFileSync("output.json");
   let cars = JSON.parse(carsRawData);
 
@@ -102,6 +110,7 @@ app.put("/api/cars/:id", (req, res) => {
 // DELETE
 app.delete("/api/cars/:id", (req, res) => {
   // Läs in från json fil
+
   const carsRawData = fs.readFileSync("output.json");
   let cars = JSON.parse(carsRawData);
   const carIndex = cars.findIndex((c) => c.id == req.params.id);

@@ -21,41 +21,53 @@
         <input type="text" id="searchCarId" name="carId" value="" /><br /><br />
         <button id="idSearch" onclick="getCarWithIdFromServer()">Skicka</button>
 
-        <form id="createCar" name="createCar">
+        <form id="createCar" name="createCar" onsubmit="addCar();">
           <h3>Lägg till bil</h3>
           <label for="brand">Märke:</label>
           <input type="text" id="brand" name="brand" value="" /><br />
-          <label for="createCarModel">Modell:</label>
+          <label for="model">Modell:</label>
           <input type="text" id="model" name="model" value="" /><br />
           <label for="year">Årtal:</label>
           <input type="text" id="year" name="year" value="" /><br />
-          <input type="submit" value="Submit!" onclick="addCar()" />
-        </form>
-        <h3>Ta bort fordon</h3>
-        <form>
-          <label for="carId">Fordons ID:</label><br />
-          <input type="text" id="carId" name="carId" value="" /><br /><br />
           <input type="submit" value="Submit!" />
         </form>
-        <h3>Ändra uppgifter för fordon</h3>
-        <form>
-          <label for="carId">Fordons ID:</label><br />
-          <input type="text" id="carId" name="carId" value="" /><br /><br />
-          <input type="submit" value="Submit" /><br /><br />
-        </form>
         <div>
-          <form id="updateCar">
-            <label for="carId">Fordons ID:</label>
-            <input type="text" id="carId" name="carId" value="" /><br />
-            <label for="carId">Märke:</label>
-            <input type="text" id="carId" name="carId" value="" /><br />
-            <label for="carId">Modell:</label>
-            <input type="text" id="carId" name="carId" value="" /><br />
-            <label for="carId">Årtal:</label>
-            <input type="text" id="carId" name="carId" value="" /><br />
-            <input type="submit" value="Submit" />
-          </form>
+          <h3>Ta bort fordon</h3>
+          <label for="carId">Fordons ID att ta bort:</label><br />
+          <input
+            type="text"
+            id="deleteCarId"
+            name="carId"
+            value=""
+          /><br /><br />
+
+          <button id="deleteCar" onclick="deleteCarFromServer()">
+            Ta bort
+          </button>
         </div>
+
+        <h3>Ändra uppgifter för fordon</h3>
+
+        <div>
+          <label for="carId2">Sök Fordon med ID:</label><br />
+          <input type="text" id="searchCarId2" name="carId2" value="" />
+          <button id="idSearch2" onclick="getCarWithIdFromServer2()">
+            Hämta
+          </button>
+          <br /><br />
+        </div>
+
+        <form id="updateCars" name="updateCar">
+          <label for="updateCarId">Fordons ID:</label>
+          <input type="text" id="updateCarId" name="id" value="" /><br />
+          <label for="updateCarBrand">Märke:</label>
+          <input type="text" id="updateCarBrand" name="brand" value="" /><br />
+          <label for="updateCarModel">Modell:</label>
+          <input type="text" id="updateCarModel" name="model" value="" /><br />
+          <label for="updateCarYear">Årtal:</label>
+          <input type="text" id="updateCarYear" name="year" value="" /><br />
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     </main>
   </body>
