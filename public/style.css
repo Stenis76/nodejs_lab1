@@ -1,0 +1,46 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
+  background-color: bisque;
+}
+
+header {
+  align-items: center;
+}
+
+main {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: bisque;
+}
+
+.container {
+  width: 50rem;
+  max-width: 75%;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 2px;
+}
+
+#myBtn {
+  background-color: rgba(232, 155, 232, 0.9);
+  border: 1px solid rgba(189, 156, 189, 0.3);
+  border-radius: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+  color: black;
+  outline: none;
+}
+
+#myBtn:hover {
+  border-color: black;
+}

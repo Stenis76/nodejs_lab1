@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer type="text/javascript" src="client.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>BILBANKEN</h1>
+    </header>
+    <main>
+      <div class="container">
+        <h3>Dina val</h3>
+        <button id="myBtn1">Lista alla fordon</button>
+        <div id="list"></div>
+        <h3>Sök efter fordon utifrån id</h3>
+        <label for="carId">Fordons ID:</label><br />
+        <input type="text" id="searchCarId" name="carId" value="" /><br /><br />
+        <button id="idSearch" onclick="getCarWithIdFromServer()">Skicka</button>
+
+        <form id="createCar" name="createCar">
+          <h3>Lägg till bil</h3>
+          <label for="brand">Märke:</label>
+          <input type="text" id="brand" name="brand" value="" /><br />
+          <label for="createCarModel">Modell:</label>
+          <input type="text" id="model" name="model" value="" /><br />
+          <label for="year">Årtal:</label>
+          <input type="text" id="year" name="year" value="" /><br />
+          <input type="submit" value="Submit!" onclick="addCar()" />
+        </form>
+        <h3>Ta bort fordon</h3>
+        <form>
+          <label for="carId">Fordons ID:</label><br />
+          <input type="text" id="carId" name="carId" value="" /><br /><br />
+          <input type="submit" value="Submit!" />
+        </form>
+        <h3>Ändra uppgifter för fordon</h3>
+        <form>
+          <label for="carId">Fordons ID:</label><br />
+          <input type="text" id="carId" name="carId" value="" /><br /><br />
+          <input type="submit" value="Submit" /><br /><br />
+        </form>
+        <div>
+          <form id="updateCar">
+            <label for="carId">Fordons ID:</label>
+            <input type="text" id="carId" name="carId" value="" /><br />
+            <label for="carId">Märke:</label>
+            <input type="text" id="carId" name="carId" value="" /><br />
+            <label for="carId">Modell:</label>
+            <input type="text" id="carId" name="carId" value="" /><br />
+            <label for="carId">Årtal:</label>
+            <input type="text" id="carId" name="carId" value="" /><br />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -2,8 +2,11 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const fs = require("fs");
+const path = require("path");
 
 app.use(express.json());
+
+app.use(express.static("public"));
 
 // skapar unika IDs
 let idGenerator = () => {
