@@ -133,15 +133,16 @@ function updateCar(event) {
   event.preventDefault();
   event.stopPropagation();
   let formData = new FormData(event.target);
-  console.log(event.target);
+
   event.target = null;
 
   let updatedCar = {};
   for (var pair of formData.entries()) {
     updatedCar[pair[0]] = pair[1];
   }
+  console.log(updatedCar.id);
 
-  fetch("http://localhost:3000/api/cars", {
+  fetch("http://localhost:3000/api/cars/" + updatedCar.id, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

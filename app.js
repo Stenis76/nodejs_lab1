@@ -81,7 +81,6 @@ app.post("/api/cars/", (req, res) => {
 // PUT
 
 app.put("/api/cars/:id", (req, res) => {
-  // Läs in från json fil
   console.log("PUT", req.body);
 
   const carsRawData = fs.readFileSync("output.json");
