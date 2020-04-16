@@ -48,7 +48,6 @@ app.get("/api/cars/:id", (req, res) => {
 
 // POST
 app.post("/api/cars/", (req, res) => {
-  console.log("post", req.body);
   // Läs in från json fil
   const carsRawData = fs.readFileSync("output.json");
   let cars = JSON.parse(carsRawData);
@@ -83,7 +82,7 @@ app.post("/api/cars/", (req, res) => {
 
 app.put("/api/cars/:id", (req, res) => {
   // Läs in från json fil
-  console.log("PUT");
+  console.log("PUT", req.body);
 
   const carsRawData = fs.readFileSync("output.json");
   let cars = JSON.parse(carsRawData);

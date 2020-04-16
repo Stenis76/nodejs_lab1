@@ -21,7 +21,7 @@
         <input type="text" id="searchCarId" name="carId" value="" /><br /><br />
         <button id="idSearch" onclick="getCarWithIdFromServer()">Skicka</button>
 
-        <form id="createCar" name="createCar" onsubmit="return addCar()">
+        <form id="createCar" name="createCar">
           <h3>Lägg till bil</h3>
           <label for="brand">Märke:</label>
           <input type="text" id="brand" name="brand" value="" /><br />
@@ -57,7 +57,7 @@
           <br /><br />
         </div>
         <div>
-          <form id="updateCars" name="updateCar" onsubmit="return updateCa()">
+          <form id="updateCars" name="updateCar">
             <label for="updateCarId">Fordons ID:</label>
             <input type="text" id="updateCarId" name="id" value="" /><br />
             <label for="updateCarBrand">Märke:</label>

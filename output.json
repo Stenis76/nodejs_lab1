@@ -1,1 +1,18 @@
-[{"id":1,"brand":"Volvo","model":"V90","year":"2018"},{"id":2,"brand":"BMW","model":"Z3","year":"2005"},{"id":"fe06","brand":"Volvo","model":"V40","year":"2014"},{"id":"4f63","brand":"Volvo","model":"V70","year":"2014"},{"id":"2f02","brand":"Mercedes","model":"V70","year":"2004"},{"id":"343f","brand":"SAAB","model":"9-5","year":"2000"},{"id":"5901","brand":"Opel","model":"Safir","year":"2005"},{"id":"ae5e","brand":"SAAB","model":"9-5","year":"2005"},{"id":"badf","brand":"","model":"","year":""},{"id":"6568","brand":"SAAB","model":"V90","year":"2014"},{"id":"7153","brand":"SAAB","model":"Z3","year":"2014"},{"id":"3d6f","brand":"SAAB","model":"undefined","year":"2002"},{"id":"2bb4","brand":"BMW","model":"9-5","year":"2018"},{"id":"2424","brand":"Skoda","model":"lullo","year":"2000"},{"id":"0601","brand":"SAAB","model":"9-5","year":"2014"},{"id":"6dd1","brand":"SAAB","model":"9-5","year":"2018"},{"id":"4763","brand":"","model":"","year":""},{"id":"97c7","brand":"SAAB","model":"Z3","year":"2018"},{"id":"00e7","brand":"Opel","model":"9-5","year":"2018"},{"id":"996f","brand":"233","model":"9-5","year":"2018"}]
+[
+  { "id": 1, "brand": "Volvo", "model": "V90", "year": "2018" },
+  { "id": 2, "brand": "BMW", "model": "Z3", "year": "2005" },
+  { "id": "fe06", "brand": "Volvo", "model": "V40", "year": "2014" },
+  { "id": "4f63", "brand": "Volvo", "model": "V70", "year": "2014" },
+  { "id": "2f02", "brand": "Mercedes", "model": "V70", "year": "2004" },
+  { "id": "343f", "brand": "SAAB", "model": "9-5", "year": "2000" },
+  { "id": "5901", "brand": "Opel", "model": "Safir", "year": "2005" },
+  { "id": "ae5e", "brand": "SAAB", "model": "9-5", "year": "2005" },
+  { "id": "badf", "brand": "", "model": "", "year": "" },
+  { "id": "6568", "brand": "SAAB", "model": "V90", "year": "2014" },
+  { "id": "7153", "brand": "SAAB", "model": "Z3", "year": "2014" },
+  { "id": "3d6f", "brand": "SAAB", "model": "undefined", "year": "2002" },
+  { "id": "2bb4", "brand": "BMW", "model": "9-5", "year": "2018" },
+  { "id": "2424", "brand": "Skoda", "model": "lullo", "year": "2000" },
+  { "id": "0601", "brand": "SAAB", "model": "9-5", "year": "2014" },
+  { "id": "6dd1", "brand": "SAAB", "model": "9-5", "year": "2018" }
+]

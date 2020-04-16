@@ -3,10 +3,10 @@ window.addEventListener("load", loadSite);
 function loadSite() {
   console.log("Client-side code running");
   getAllCarsFromServer();
-  // const formCreate = document.getElementById("createCar");
-  // formCreate.addEventListener("submit", addCar());
-  // const formAdd = document.getElementById("updateCars");
-  // formAdd.addEventListener("submit", updateCar());
+  const formCreate = document.getElementById("createCar");
+  formCreate.addEventListener("submit", addCar);
+  const formAdd = document.getElementById("updateCars");
+  formAdd.addEventListener("submit", updateCar);
 }
 
 // Hämta alla bilar och skriv ut lista i html
@@ -63,10 +63,11 @@ function getCarWithIdFromServer() {
 }
 
 // Lägg till bil
-function addCar() {
-  let addCar = document.getElementById("createCar");
-  let formData = new FormData(addCar);
-  console.log(addCar);
+function addCar(event) {
+  event.preventDefault();
+  event.stopPropagation();
+
+  let formData = new FormData(event.target);
 
   let newCar = {};
   for (var pair of formData.entries()) {
@@ -128,30 +129,32 @@ function getCarWithIdFromServer2() {
   }
 }
 
-function updateCa() {
-  const carData = document.getElementById("updateCars");
-  let formData = new FormData(carData);
-  console.log(carData);
+function updateCar(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  let formData = new FormData(event.target);
+  console.log(event.target);
+  event.target = null;
 
   let updatedCar = {};
   for (var pair of formData.entries()) {
     updatedCar[pair[0]] = pair[1];
   }
 
-  // fetch("http://localhost:3000/api/cars", {
-  //   method: "PUT",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify(updatedCar),
-  // })
-  //   .then((res) => {
-  //     return res.json();
-  //   })
-  //   .then((result) => {
-  //     console.log("Success:", result);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error:", error);
-  //   });
+  fetch("http://localhost:3000/api/cars", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedCar),
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((result) => {
+      console.log("Success:", result);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
