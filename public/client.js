@@ -3,8 +3,10 @@ window.addEventListener("load", loadSite);
 function loadSite() {
   console.log("Client-side code running");
   getAllCarsFromServer();
-  const formAdd = document.getElementById("updateCars");
-  formAdd.addEventListener("submit", updateCar());
+  // const formCreate = document.getElementById("createCar");
+  // formCreate.addEventListener("submit", addCar());
+  // const formAdd = document.getElementById("updateCars");
+  // formAdd.addEventListener("submit", updateCar());
 }
 
 // Hämta alla bilar och skriv ut lista i html
@@ -64,6 +66,7 @@ function getCarWithIdFromServer() {
 function addCar() {
   let addCar = document.getElementById("createCar");
   let formData = new FormData(addCar);
+  console.log(addCar);
 
   let newCar = {};
   for (var pair of formData.entries()) {
@@ -125,14 +128,16 @@ function getCarWithIdFromServer2() {
   }
 }
 
-function updateCar() {
-  let formData = new FormData(document.getElementById("updateCars"));
+function updateCa() {
+  const carData = document.getElementById("updateCars");
+  let formData = new FormData(carData);
+  console.log(carData);
 
   let updatedCar = {};
   for (var pair of formData.entries()) {
     updatedCar[pair[0]] = pair[1];
   }
-  console.log(updatedCar);
+
   // fetch("http://localhost:3000/api/cars", {
   //   method: "PUT",
   //   headers: {

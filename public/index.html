@@ -21,7 +21,7 @@
         <input type="text" id="searchCarId" name="carId" value="" /><br /><br />
         <button id="idSearch" onclick="getCarWithIdFromServer()">Skicka</button>
 
-        <form id="createCar" name="createCar" onsubmit="addCar();">
+        <form id="createCar" name="createCar" onsubmit="return addCar()">
           <h3>Lägg till bil</h3>
           <label for="brand">Märke:</label>
           <input type="text" id="brand" name="brand" value="" /><br />
@@ -56,18 +56,29 @@
           </button>
           <br /><br />
         </div>
-
-        <form id="updateCars" name="updateCar">
-          <label for="updateCarId">Fordons ID:</label>
-          <input type="text" id="updateCarId" name="id" value="" /><br />
-          <label for="updateCarBrand">Märke:</label>
-          <input type="text" id="updateCarBrand" name="brand" value="" /><br />
-          <label for="updateCarModel">Modell:</label>
-          <input type="text" id="updateCarModel" name="model" value="" /><br />
-          <label for="updateCarYear">Årtal:</label>
-          <input type="text" id="updateCarYear" name="year" value="" /><br />
-          <input type="submit" value="Submit" />
-        </form>
+        <div>
+          <form id="updateCars" name="updateCar" onsubmit="return updateCa()">
+            <label for="updateCarId">Fordons ID:</label>
+            <input type="text" id="updateCarId" name="id" value="" /><br />
+            <label for="updateCarBrand">Märke:</label>
+            <input
+              type="text"
+              id="updateCarBrand"
+              name="brand"
+              value=""
+            /><br />
+            <label for="updateCarModel">Modell:</label>
+            <input
+              type="text"
+              id="updateCarModel"
+              name="model"
+              value=""
+            /><br />
+            <label for="updateCarYear">Årtal:</label>
+            <input type="text" id="updateCarYear" name="year" value="" /><br />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
       </div>
     </main>
   </body>
