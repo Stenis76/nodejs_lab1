@@ -1,4 +1,12 @@
-# nodejs_lab1
+# nodejs_lab1 - av Dick Stenqvist
+
+G och VG krav uppfylda
+
+npm install
+
+https://github.com/Stenis76/nodejs_lab1
+
+Den ska innehålla en titel, beskrivning av projektet, vilka krav som är uppfyllda, info om hur projektet byggs och körs samt en länk till GitHub repot.
 
 Laboration 1 - REST-API
 
