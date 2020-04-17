@@ -2,7 +2,13 @@
 
 G och VG krav uppfylda
 
+installera alla beroenden
 npm install
+
+kör appen
+nodemon app.js
+
+webbläsaren kör http://localhost:3000/
 
 https://github.com/Stenis76/nodejs_lab1
 
